@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Annotation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Interactive Learning Material</h1>
+        <div class="user-info">
+            <span id="points">Points: 0</span>
+            <span id="badges">Badges: None</span>
+        </div>
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                <span class="slider round"></span>
+            </label>
+            <span>Dark Mode</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <main id="content" tabindex="0">
+            <p>
+                Annotation tools are increasingly being utilized in educational settings to enhance engagement, comprehension, and collaborative learning. This research aims to investigate their effectiveness across various educational contexts, including STEM, programming, distance learning, and language education.
+            </p>
+            <p>
+                By focusing on social, video, textual, and gamified annotation formats, the study explores how these tools foster critical thinking, improve academic performance, and adapt to diverse learning environments. The findings aim to provide a unified framework for leveraging annotation tools to address persistent challenges in modern education, including engagement, collaboration, and comprehension.
+            </p>
+            <!-- Add more paragraphs as needed -->
+        </main>
+
+        <aside id="annotation-panel">
+            <h2>Annotations</h2>
+            <input type="text" id="search-input" placeholder="Search annotations..." aria-label="Search Annotations">
+            <div id="annotations-list">
+                <!-- Annotations will be dynamically inserted here -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Adding Annotations -->
+    <div id="annotation-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="modal-title">
+            <span class="close-button" id="close-modal" aria-label="Close">&times;</span>
+            <h2 id="modal-title">Add Annotation</h2>
+            <textarea id="annotation-text" placeholder="Enter your comment here..." aria-label="Annotation Comment"></textarea>
+            <input type="text" id="annotation-tags" placeholder="Enter tags (comma separated)" aria-label="Annotation Tags">
+            <button id="save-annotation">Save Annotation</button>
+            <button id="ai-suggest">Get AI Suggestion</button>
+        </div>
+    </div>
+
+    <!-- Video Section with Annotations -->
+    <section class="video-section">
+        <h2>Video Learning Module</h2>
+        <video id="educational-video" width="600" controls>
+            <source src="sample-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button id="add-video-annotation">Add Video Annotation</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
