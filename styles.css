@@ -87,85 +87,187 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
+/* Content Wrapper Layout */
 .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-wrapper {
     display: flex;
-    padding: 1rem;
-    gap: 1rem;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-main#content {
-    flex: 3;
-    padding: 1rem;
-    background-color: #fff;
-    border-radius: 5px;
-    height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.main-content {
+    flex: 2;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-main#content p {
-    margin-bottom: 1rem;
-}
-
-aside#annotation-panel {
+.annotation-sidebar {
     flex: 1;
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    height: 80vh;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-aside#annotation-panel h2 {
-    margin-bottom: 1rem;
-    text-align: center;
+.annotation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 10px;
+}
+
+.annotation-header h2 {
+    margin: 0;
+    color: #333;
 }
 
 #search-input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.annotations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .main-content {
+    background: #2a2a2a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .annotation-sidebar {
+    background: #1f1f1f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .annotation-header {
+    border-bottom-color: #6ab0ff;
+}
+
+.dark-mode .annotation-header h2 {
+    color: #fff;
+}
+
+.dark-mode #search-input {
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+}
+
+/* Scrollbar for Annotations */
+.annotation-sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.annotation-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
     border-radius: 4px;
 }
 
-.annotation-item {
-    background-color: #e9e9e9;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+.annotation-sidebar::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
     border-radius: 4px;
-    position: relative;
-    transition: background-color 0.3s;
+}
+
+.dark-mode .annotation-sidebar::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.dark-mode .annotation-sidebar::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+}
+
+/* Annotation Item Styles */
+.annotation-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
 }
 
 .annotation-item:hover {
-    background-color: #d4d4d4;
+    background: #f0f0f0;
 }
 
-.annotation-item strong {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-size: 0.9rem;
+.annotation-full-sentence {
+    font-style: italic;
     color: #555;
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 3px solid #4a90e2;
 }
 
-.annotation-body {
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
+.annotation-text {
+    color: #333;
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
 }
 
 .annotation-tags {
-    margin-top: 0.3rem;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 
 .annotation-tags span {
-    background-color: #4CAF50;
+    background: #4a90e2;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .annotation-item {
+    background: #2a2a2a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .annotation-item:hover {
+    background: #3a3a3a;
+}
+
+.dark-mode .annotation-full-sentence {
+    color: #aaa;
+    background: #3a3a3a;
+    border-left-color: #6ab0ff;
+}
+
+.dark-mode .annotation-text {
     color: #fff;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    margin-right: 0.3rem;
-    font-size: 0.8rem;
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+}
+
+.dark-mode .annotation-tags span {
+    background: #6ab0ff;
 }
 
 .highlight {
@@ -758,4 +860,83 @@ button:disabled {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Selected Text Display in Annotation Modal */
+.selected-text-display {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-left: 4px solid #4a90e2;
+}
+
+.selected-text-header {
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.selected-text-content {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .selected-text-display {
+    background: #2a2a2a;
+    border-left-color: #6ab0ff;
+}
+
+.dark-mode .selected-text-header {
+    color: #aaa;
+}
+
+.dark-mode .selected-text-content {
+    color: #fff;
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+}
+
+/* Scrollbar Styling */
+.selected-text-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.selected-text-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.selected-text-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.selected-text-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.dark-mode .selected-text-content::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+
+.dark-mode .selected-text-content::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+}
+
+.dark-mode .selected-text-content::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
 }

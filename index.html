@@ -30,23 +30,27 @@
     </header>
 
     <div class="container">
-        <main id="content" tabindex="0">
-            <p>
-                Annotation tools are increasingly being utilized in educational settings to enhance engagement, comprehension, and collaborative learning. This research aims to investigate their effectiveness across various educational contexts, including STEM, programming, distance learning, and language education.
-            </p>
-            <p>
-                By focusing on social, video, textual, and gamified annotation formats, the study explores how these tools foster critical thinking, improve academic performance, and adapt to diverse learning environments. The findings aim to provide a unified framework for leveraging annotation tools to address persistent challenges in modern education, including engagement, collaboration, and comprehension.
-            </p>
-            <!-- Add more paragraphs as needed -->
-        </main>
+        <div class="content-wrapper">
+            <main id="content" tabindex="0" class="main-content">
+                <p>
+                    Annotation tools are increasingly being utilized in educational settings to enhance engagement, comprehension, and collaborative learning. This research aims to investigate their effectiveness across various educational contexts, including STEM, programming, distance learning, and language education.
+                </p>
+                <p>
+                    By focusing on social, video, textual, and gamified annotation formats, the study explores how these tools foster critical thinking, improve academic performance, and adapt to diverse learning environments. The findings aim to provide a unified framework for leveraging annotation tools to address persistent challenges in modern education, including engagement, collaboration, and comprehension.
+                </p>
+                <!-- Add more paragraphs as needed -->
+            </main>
 
-        <aside id="annotation-panel">
-            <h2>Annotations</h2>
-            <input type="text" id="search-input" placeholder="Search annotations..." aria-label="Search Annotations">
-            <div id="annotations-list">
-                <!-- Annotations will be dynamically inserted here -->
-            </div>
-        </aside>
+            <aside id="annotation-panel" class="annotation-sidebar">
+                <div class="annotation-header">
+                    <h2>Annotations</h2>
+                    <input type="text" id="search-input" placeholder="Search annotations..." aria-label="Search Annotations">
+                </div>
+                <div id="annotations-list" class="annotations-container">
+                    <!-- Annotations will be dynamically inserted here -->
+                </div>
+            </aside>
+        </div>
     </div>
 
     <!-- Modal for Adding Annotations -->
