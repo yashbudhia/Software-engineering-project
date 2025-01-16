@@ -11,13 +11,21 @@
         <div class="user-info">
             <span id="points">Points: 0</span>
             <span id="badges">Badges: None</span>
+            <span id="online-users">Online: 1</span>
         </div>
-        <div class="theme-toggle">
-            <label class="switch">
-                <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle Dark Mode">
-                <span class="slider round"></span>
-            </label>
-            <span>Dark Mode</span>
+        <div class="controls">
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                    <span class="slider round"></span>
+                </label>
+                <span>Dark Mode</span>
+            </div>
+            <div class="action-buttons">
+                <button id="export-btn" title="Export Annotations (Ctrl+E)">Export</button>
+                <button id="import-btn" title="Import Annotations (Ctrl+I)">Import</button>
+                <button id="stats-btn" title="View Statistics (Ctrl+S)">Statistics</button>
+            </div>
         </div>
     </header>
 
@@ -46,10 +54,38 @@
         <div class="modal-content" role="dialog" aria-labelledby="modal-title">
             <span class="close-button" id="close-modal" aria-label="Close">&times;</span>
             <h2 id="modal-title">Add Annotation</h2>
-            <textarea id="annotation-text" placeholder="Enter your comment here..." aria-label="Annotation Comment"></textarea>
+            <div class="rich-text-toolbar">
+                <button data-format="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+                <button data-format="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+                <button data-format="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+                <button data-format="code" title="Code (Ctrl+K)"><code>{}</code></button>
+            </div>
+            <div id="annotation-editor" contenteditable="true" class="rich-text-editor" placeholder="Enter your comment here..."></div>
             <input type="text" id="annotation-tags" placeholder="Enter tags (comma separated)" aria-label="Annotation Tags">
+            <div class="collaboration-info">
+                <span id="collaborators"></span>
+                <span id="typing-status"></span>
+            </div>
             <button id="save-annotation">Save Annotation</button>
             <button id="ai-suggest">Get AI Suggestion</button>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="stats-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="stats-modal-title">
+            <span class="close-button" aria-label="Close">&times;</span>
+            <h2 id="stats-modal-title">Analytics Dashboard</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Annotation Stats</h3>
+                    <div id="annotation-stats"></div>
+                </div>
+                <div class="stat-card">
+                    <h3>Activity Timeline</h3>
+                    <div id="activity-timeline"></div>
+                </div>
+            </div>
         </div>
     </div>
 
