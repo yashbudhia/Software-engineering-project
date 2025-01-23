@@ -96,12 +96,105 @@
     <!-- Video Section with Annotations -->
     <section class="video-section">
         <h2>Video Learning Module</h2>
-        <video id="educational-video" width="600" controls>
-            <source src="sample-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <button id="add-video-annotation">Add Video Annotation</button>
+        <div class="video-container">
+            <video id="educational-video" controls>
+                <source src="sample-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-controls">
+                <div class="progress-bar">
+                    <div class="progress-filled"></div>
+                    <div class="timestamp">00:00 / 00:00</div>
+                </div>
+                <div class="control-buttons">
+                    <button id="play-pause" title="Play/Pause">Play</button>
+                    <button id="add-video-annotation">Add Note</button>
+                    <div class="speed-control">
+                        <button id="speed-btn">1x</button>
+                        <div class="speed-options">
+                            <button data-speed="0.5">0.5x</button>
+                            <button data-speed="1">1x</button>
+                            <button data-speed="1.5">1.5x</button>
+                            <button data-speed="2">2x</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Content Section -->
+        <div class="video-content">
+            <h3>Video Transcript</h3>
+            <div class="transcript-content" id="transcript">
+                <!-- Sample transcript text that can be selected -->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+        </div>
+
+        <!-- Annotations List -->
+        <div class="annotations-panel">
+            <h3>Notes & Annotations</h3>
+            <div id="annotation-list"></div>
+        </div>
     </section>
+
+    <!-- Annotation Modal -->
+    <div id="annotation-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add Annotation</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="annotation-form">
+                <div class="form-group">
+                    <label for="annotation-text">Note:</label>
+                    <textarea id="annotation-text" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="annotation-tags">Tags (comma-separated):</label>
+                    <input type="text" id="annotation-tags" placeholder="important, question, review">
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" class="close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Flashcard Modal Template -->
+    <template id="flashcard-modal-template">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Flashcard</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="flashcard-form">
+                    <div class="form-group">
+                        <label for="card-front">Front (Question/Term):</label>
+                        <input type="text" id="card-front" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-back">Back (Answer/Definition):</label>
+                        <textarea id="card-back" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Create</button>
+                        <button type="button" class="close-modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <!-- Selection Toolbar -->
+    <div id="selection-toolbar" class="selection-toolbar">
+        <button class="toolbar-btn add-note-btn">Add Note</button>
+        <button class="toolbar-btn create-flashcard-btn">Create Flashcard</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
