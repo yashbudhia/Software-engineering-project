@@ -1,0 +1,339 @@
+/* ------------------------------
+   1. RESET & BASE STYLES
+------------------------------ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+  }
+  
+  /* ------------------------------
+     2. HEADER & NAV
+  ------------------------------ */
+  header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .user-info span {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+  
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+  }
+  
+  .theme-toggle span {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Toggle Switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* ------------------------------
+     3. LAYOUT CONTAINERS
+  ------------------------------ */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    transition: margin-right 0.3s ease; /* If you have a sidebar that expands */
+  }
+  
+  .content-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  
+  .main-content {
+    flex: 2;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ------------------------------
+     4. ANNOTATION SIDEBAR
+  ------------------------------ */
+  .annotation-sidebar {
+    flex: 1;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: sticky; /* So it doesn't scroll away on tall pages */
+    top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .annotation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 10px;
+  }
+  
+  .annotation-header h2 {
+    margin: 0;
+    color: #333;
+  }
+  
+  #search-input {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  .annotations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Scrollbar styling (for annotations) */
+  .annotation-sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .annotation-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  .annotation-sidebar::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  /* ------------------------------
+     5. DARK MODE ADJUSTMENTS
+  ------------------------------ */
+  .dark-mode .main-content {
+    background: #2a2a2a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #ccc;
+  }
+  
+  .dark-mode .annotation-sidebar {
+    background: #1f1f1f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark-mode .annotation-header {
+    border-bottom-color: #6ab0ff;
+  }
+  
+  .dark-mode .annotation-header h2 {
+    color: #fff;
+  }
+  
+  .dark-mode #search-input {
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+    color: white;
+  }
+  
+  .dark-mode .annotation-sidebar::-webkit-scrollbar-track {
+    background: #2a2a2a;
+  }
+  
+  .dark-mode .annotation-sidebar::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+  }
+  
+  /* ------------------------------
+     6. HIGHLIGHT CLASSES
+  ------------------------------ */
+  .highlight-yellow {
+    background-color: yellow;
+    color: #000;
+  }
+  
+  .highlight-green {
+    background-color: lightgreen;
+    color: #000;
+  }
+  
+  .highlight-blue {
+    background-color: lightblue;
+    color: #000;
+  }
+  
+  .highlight-pink {
+    background-color: pink;
+    color: #000;
+  }
+  
+  .highlight-orange {
+    background-color: orange;
+    color: #000;
+  }
+  
+  .highlight-gray {
+    background-color: lightgray;
+    color: #000;
+  }
+  
+  /* (Optional) add some extra styling for highlights */
+  [class^="highlight-"] {
+    padding: 2px;
+    border-radius: 2px;
+  }
+  
+  /* ------------------------------
+     7. AI EXPLANATION MODAL / BOX
+  ------------------------------ */
+  #ai-explanation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 80%;
+    z-index: 1000;
+    display: none;
+  }
+  
+  .ai-explanation-box {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-top: 10px;
+    border-left: 4px solid #007bff;
+    font-size: 14px;
+  }
+  
+  .ai-annotation-item {
+    background-color: #eef2ff;
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 4px solid #4c6ef5;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  /* ------------------------------
+     8. SELECTION TOOLBAR
+  ------------------------------ */
+  #selection-toolbar {
+    position: absolute;
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 9999;
+  }
+  
+  #selection-toolbar button {
+    cursor: pointer;
+    margin: 2px;
+  }
+  
+  /* ------------------------------
+     9. ANNOTATION MODAL
+  ------------------------------ */
+  #annotation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1em;
+    z-index: 10000;
+    display: none;
+  }
+  
+  #annotation-modal h2 {
+    margin-top: 0;
+  }
+  
+  #annotation-modal .modal-buttons {
+    text-align: right;
+  }
+  
+  #annotation-modal .modal-buttons button {
+    margin: 0 5px;
+  }
+  
+  .close-modal {
+    cursor: pointer;
+    float: right;
+    border: none;
+    background: none;
+    font-size: 1.2em;
+  }
+  
+  /* ------------------------------
+     END OF FILE
+  ------------------------------ */
+  

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Annotation Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER SECTION -->
+  <header>
+    <h1>Interactive Learning Material</h1>
+    <div class="user-info">
+      <span id="points">Points: 0</span>
+      <span id="badges">Badges: None</span>
+      <span id="online-users">Online: 1</span>
+    </div>
+    <div class="controls">
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle Dark Mode">
+          <span class="slider round"></span>
+        </label>
+        <span>Dark Mode</span>
+      </div>
+      <div class="action-buttons">
+        <button id="export-btn" title="Export Annotations (Ctrl+E)">Export</button>
+        <button id="import-btn" title="Import Annotations (Ctrl+I)">Import</button>
+        <button id="stats-btn" title="View Statistics (Ctrl+S)">Statistics</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <div class="content-wrapper">
+      <!-- MAIN CONTENT SECTION -->
+      <main id="content" tabindex="0" class="main-content">
+        <h2>Research Overview</h2>
+        <p>
+          Annotation tools are increasingly being utilized in educational settings to enhance engagement, 
+          comprehension, and collaborative learning. <strong>Select text</strong> anywhere on this page to add 
+          notes or create flashcards for future review.
+        </p>
+        <p>
+          This research aims to investigate their effectiveness across various educational contexts, 
+          including STEM, programming, distance learning, and language education. By focusing on social, 
+          video, textual, and gamified annotation formats, the study explores how these tools foster 
+          critical thinking, improve academic performance, and adapt to diverse learning environments.
+        </p>
+        <p>
+          The findings aim to provide a unified framework for leveraging annotation tools to address 
+          persistent challenges in modern education, such as engagement, collaboration, and comprehension.
+        </p>
+
+        <h3>Key Questions</h3>
+        <ol>
+          <li>How do annotation tools enhance student engagement across different subjects?</li>
+          <li>What types of annotations (textual, visual, video) lead to deeper comprehension?</li>
+          <li>Can collaborative annotation effectively bridge the gap in distance learning?</li>
+          <li>Which gamified features improve retention and motivation?</li>
+        </ol>
+
+        <h3>Extended Learning</h3>
+        <p>
+          Moreover, emerging technologies in the annotation space, including AI-powered suggestions 
+          and real-time collaborative features, promise to make the learning process even more interactive. 
+          The potential for crowd-sourced annotation and community-driven insights offers exciting new 
+          pathways for open-source course materials and peer review. 
+        </p>
+        <p>
+          By carefully designing annotation activities, educators can guide learners to focus on critical 
+          passages, reflect on content, and share viewpoints with classmates. This enriched learning 
+          environment drives higher-order thinking and fosters a participatory culture in both virtual 
+          and in-person classrooms.
+        </p>
+      </main>
+
+      <!-- SIDEBAR FOR ANNOTATIONS -->
+      <aside id="annotation-panel" class="annotation-sidebar">
+        <div class="annotation-header">
+          <h2>Annotations</h2>
+          <input type="text" id="search-input" placeholder="Search annotations..." aria-label="Search Annotations">
+        </div>
+        <div id="annotations-list" class="annotations-container">
+          <!-- Annotations will be dynamically inserted here -->
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- VIDEO SECTION WITH ANNOTATIONS -->
+  <section class="video-section">
+    <h2>Video Learning Module</h2>
+    <div class="video-container">
+      <video id="educational-video" controls>
+        <source src="sample-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-controls">
+        <div class="progress-bar">
+          <div class="progress-filled"></div>
+          <div class="timestamp">00:00 / 00:00</div>
+        </div>
+        <div class="control-buttons">
+          <button id="play-pause" title="Play/Pause">Play</button>
+          <button id="add-video-annotation" title="Add a timestamped annotation">Add Note</button>
+          <div class="speed-control">
+            <button id="speed-btn">1x</button>
+            <div class="speed-options">
+              <button data-speed="0.5">0.5x</button>
+              <button data-speed="1">1x</button>
+              <button data-speed="1.5">1.5x</button>
+              <button data-speed="2">2x</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT SECTION -->
+    <div class="video-content">
+      <h3>Video Transcript</h3>
+      <div class="transcript-content" id="transcript">
+        <!-- Sample transcript text that can be selected -->
+        <p>[00:01] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+        <p>[00:15] Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+        <p>[00:30] Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+    </div>
+
+    <!-- ANNOTATIONS PANEL FOR VIDEO -->
+    <div class="annotations-panel">
+      <h3>Video Notes & Annotations</h3>
+      <div id="annotation-list">
+        <!-- Placeholder for video annotations -->
+      </div>
+    </div>
+  </section>
+
+   <!-- MODAL FOR ADDING GENERAL/TEXT ANNOTATIONS -->
+   <div id="annotation-modal" aria-hidden="true">
+    <button class="close-modal" id="close-modal" aria-label="Close">&times;</button>
+    <h2 id="modal-title">Add Annotation</h2>
+
+    <!-- NEW TITLE FIELD -->
+    <div>
+      <label for="annotation-title">Title:</label>
+      <input
+        type="text"
+        id="annotation-title"
+        placeholder="Enter annotation title"
+        style="width:100%;"
+      />
+    </div>
+
+    <div style="margin-top:1em;">
+      <label for="annotation-text">Annotation Comment:</label>
+      <textarea
+        id="annotation-text"
+        rows="4"
+        style="width:100%;"
+        placeholder="Enter your comment here..."
+      ></textarea>
+    </div>
+
+    <div class="modal-buttons">
+      <button id="save-annotation">Save Annotation</button>
+    </div>
+  </div>
+
+  <!-- SELECTION TOOLBAR FOR HIGHLIGHTS -->
+  <div id="selection-toolbar">
+    <!-- 5 color highlight buttons -->
+    <button data-color="yellow">Yellow</button>
+    <button data-color="green">Green</button>
+    <button data-color="blue">Blue</button>
+    <button data-color="pink">Pink</button>
+    <button data-color="orange">Orange</button>
+  </div>
+
+  <!-- Link to external script -->
+  <script src="script.js"></script>
+</body>
+</html>

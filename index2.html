@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Annotation Tool</title>
+    <!-- Reference your external CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- PDF.js library for rendering PDF in the browser -->
+    <!-- This is a minimal working CDN link; versions may vary -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Interactive Learning Material</h1>
+        <div class="user-info">
+            <span id="points">Points: 0</span>
+            <span id="badges">Badges: None</span>
+            <span id="online-users">Online: 1</span>
+        </div>
+        <div class="controls">
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                    <span class="slider round"></span>
+                </label>
+                <span>Dark Mode</span>
+            </div>
+            <div class="action-buttons">
+                <button id="export-btn" title="Export Annotations (Ctrl+E)">Export</button>
+                <button id="import-btn" title="Import Annotations (Ctrl+I)">Import</button>
+                <button id="stats-btn" title="View Statistics (Ctrl+S)">Statistics</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <main id="content" tabindex="0" class="main-content">
+                <p>
+                    Annotation tools are increasingly being utilized in educational settings to enhance engagement, comprehension, and collaborative learning. This research aims to investigate their effectiveness across various educational contexts, including STEM, programming, distance learning, and language education.
+                </p>
+                <p>
+                    By focusing on social, video, textual, and gamified annotation formats, the study explores how these tools foster critical thinking, improve academic performance, and adapt to diverse learning environments. The findings aim to provide a unified framework for leveraging annotation tools to address persistent challenges in modern education, including engagement, collaboration, and comprehension.
+                </p>
+            </main>
+
+            <aside id="annotation-panel" class="annotation-sidebar">
+                <div class="annotation-header">
+                    <h2>Annotations</h2>
+                    <input type="text" id="search-input" placeholder="Search annotations..." aria-label="Search Annotations">
+                </div>
+                <div id="annotations-list" class="annotations-container">
+                    <!-- Annotations will be dynamically inserted here -->
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Modal for Adding Annotations -->
+    <div id="annotation-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="modal-title">
+            <span class="close-button" id="close-modal" aria-label="Close">&times;</span>
+            <h2 id="modal-title">Add Annotation</h2>
+            <div class="rich-text-toolbar">
+                <button data-format="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+                <button data-format="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+                <button data-format="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+                <button data-format="code" title="Code (Ctrl+K)"><code>{}</code></button>
+            </div>
+            <div id="annotation-editor" contenteditable="true" class="rich-text-editor" placeholder="Enter your comment here..."></div>
+            <input type="text" id="annotation-tags" placeholder="Enter tags (comma separated)" aria-label="Annotation Tags">
+            <div class="collaboration-info">
+                <span id="collaborators"></span>
+                <span id="typing-status"></span>
+            </div>
+            <button id="save-annotation">Save Annotation</button>
+            <button id="ai-suggest">Get AI Suggestion</button>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="stats-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="stats-modal-title">
+            <span class="close-button" aria-label="Close">&times;</span>
+            <h2 id="stats-modal-title">Analytics Dashboard</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Annotation Stats</h3>
+                    <div id="annotation-stats"></div>
+                </div>
+                <div class="stat-card">
+                    <h3>Activity Timeline</h3>
+                    <div id="activity-timeline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section with Annotations -->
+    <section class="video-section">
+        <h2>Video Learning Module</h2>
+        <div class="video-container">
+            <video id="educational-video" controls>
+                <source src="sample-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-controls">
+                <div class="progress-bar">
+                    <div class="progress-filled"></div>
+                    <div class="timestamp">00:00 / 00:00</div>
+                </div>
+                <div class="control-buttons">
+                    <button id="play-pause" title="Play/Pause">Play</button>
+                    <button id="add-video-annotation">Add Note</button>
+                    <div class="speed-control">
+                        <button id="speed-btn">1x</button>
+                        <div class="speed-options">
+                            <button data-speed="0.5">0.5x</button>
+                            <button data-speed="1">1x</button>
+                            <button data-speed="1.5">1.5x</button>
+                            <button data-speed="2">2x</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Content Section -->
+        <div class="video-content">
+            <h3>Video Transcript</h3>
+            <div class="transcript-content" id="transcript">
+                <!-- Sample transcript text that can be selected -->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+        </div>
+
+        <!-- Annotations List -->
+        <div class="annotations-panel">
+            <h3>Notes & Annotations</h3>
+            <div id="annotation-list"></div>
+        </div>
+    </section>
+
+    <!-- Annotation Modal -->
+    <div id="annotation-modal-2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title-2">Add Annotation</h3>
+                <button class="close-modal-2">&times;</button>
+            </div>
+            <form id="annotation-form">
+                <div class="form-group">
+                    <label for="annotation-text">Note:</label>
+                    <textarea id="annotation-text" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="annotation-tags-2">Tags (comma-separated):</label>
+                    <input type="text" id="annotation-tags-2" placeholder="important, question, review">
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" class="close-modal-2">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Flashcard Modal Template -->
+    <template id="flashcard-modal-template">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Flashcard</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="flashcard-form">
+                    <div class="form-group">
+                        <label for="card-front">Front (Question/Term):</label>
+                        <input type="text" id="card-front" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-back">Back (Answer/Definition):</label>
+                        <textarea id="card-back" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Create</button>
+                        <button type="button" class="close-modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <!-- Selection Toolbar -->
+    <div id="selection-toolbar" class="selection-toolbar">
+        <button class="toolbar-btn add-note-btn">Add Note</button>
+        <button class="toolbar-btn create-flashcard-btn">Create Flashcard</button>
+    </div>
+
+    <!-- PDF Upload and Viewer Section (New Feature) -->
+    <section class="pdf-section">
+        <h2>PDF Viewer & Annotations</h2>
+        <div class="pdf-container">
+            <input type="file" id="pdf-upload" accept="application/pdf"/>
+            <div id="pdf-viewer" class="pdf-viewer">
+                <!-- PDF pages will be rendered here -->
+            </div>
+            <button id="highlight-btn">Highlight Selected Text</button>
+        </div>
+
+        <div class="pdf-annotations-container">
+            <h3>PDF Annotations (from annotation.json)</h3>
+            <div id="pdf-annotations-list">
+                <!-- Highlighted PDF annotations will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Include your main script -->
+    <script src="script.js"></script>
+</body>
+</html>

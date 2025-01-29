@@ -145,7 +145,16 @@ function showAnnotationPanel(text) {
                     </div>
                 </div>
                 <textarea id="annotation-text" placeholder="Add your own notes here..."></textarea>
-                <button class="save-btn" onclick="saveAnnotation()">
+                <button class="save-btn"
+  onclick="saveAnnotation({
+    id: Date.now(),
+    text: 'Annotations ',
+    annotation: 'Annotation tools are increasingly being utilized in educational settings to enhanc',
+    color: '#e91e63',
+    timestamp: new Date().toISOString()
+  })">
+  <i class="fas fa-save"></i> Save Notes
+</button>
                     <i class="fas fa-save"></i> Save Notes
                 </button>
             </div>
@@ -317,44 +326,44 @@ function useAsSuggestion() {
     document.getElementById('annotation-text').value = formattedAnnotation;
 }
 
-// Save annotation
-function saveAnnotation() {
-    const annotationText = document.getElementById('annotation-text').value.trim();
+// // Save annotation
+// function saveAnnotation() {
+//     const annotationText = document.getElementById('annotation-text').value.trim();
     
-    if (!annotationText) {
-        showNotification('Please write an annotation', 'error');
-        return;
-    }
+//     if (!annotationText) {
+//         showNotification('Please write an annotation', 'error');
+//         return;
+//     }
 
-    try {
-        // Create annotation object
-        const annotation = {
-            id: Date.now(),
-            text: selectedText,
-            annotation: annotationText,
-            color: selectedColor,
-            timestamp: new Date().toISOString()
-        };
+//     try {
+//         // Create annotation object
+//         const annotation = {
+//             id: Date.now(),
+//             text: selectedText,
+//             annotation: annotationText,
+//             color: selectedColor,
+//             timestamp: new Date().toISOString()
+//         };
 
-        // Save to localStorage
-        const annotations = JSON.parse(localStorage.getItem('annotations') || '[]');
-        annotations.push(annotation);
-        localStorage.setItem('annotations', JSON.stringify(annotations));
+//         // Save to localStorage
+//         const annotations = JSON.parse(localStorage.getItem('annotations') || '[]');
+//         annotations.push(annotation);
+//         localStorage.setItem('annotations', JSON.stringify(annotations));
 
-        // Highlight text
-        highlightSelection();
+//         // Highlight text
+//         highlightSelection();
 
-        // Show success message
-        showNotification('Annotation saved successfully!', 'success');
+//         // Show success message
+//         showNotification('Annotation saved successfully!', 'success');
 
-        // Hide panel
-        document.getElementById('annotation-panel').style.display = 'none';
+//         // Hide panel
+//         document.getElementById('annotation-panel').style.display = 'none';
 
-    } catch (error) {
-        console.error('Save Error:', error);
-        showNotification('Could not save annotation', 'error');
-    }
-}
+//     } catch (error) {
+//         console.error('Save Error:', error);
+//         showNotification('Could not save annotation', 'error');
+//     }
+// }
 
 // Highlight text with selected color
 function highlightSelection() {
